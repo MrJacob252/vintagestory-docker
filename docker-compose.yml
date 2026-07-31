@@ -1,0 +1,10 @@
+services:
+  vintagestory:
+    image: test:latest
+    container_name: vs-server
+    restart: unless-stopped
+    stdin_open: true # -i
+    tty: true # -t
+    ports:
+      - "42420:42420/udp"
+      - "42420:42420/tcp"
