@@ -15,6 +15,7 @@ RUN apt-get -y install libicu-dev
 RUN apt-get -y install vim
 
 USER vintagestory
+WORKDIR /data
 WORKDIR /home/vintagestory
 
 # Setup .NET10
@@ -37,7 +38,8 @@ RUN mkdir server && tar -C server -xzf vs_server_linux-x64_*.*.*.tar.gz
 RUN chmod +x server/server.sh
 
 # Import previous data (if provided in the folder)
-ADD ./data ./data
+RUN mkdir ./data
+RUN cp -r /data ./data
 
 # Modify the server.sh file
 RUN sed -i -e 's|^USERNAME=.*|USERNAME=vintagestory|' server/server.sh

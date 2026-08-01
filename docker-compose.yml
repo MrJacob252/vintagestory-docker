@@ -1,6 +1,7 @@
 services:
   vintagestory:
-    image: test:latest
+    build: .
+    image: vintagestory:1.22.5
     container_name: vs-server
     restart: unless-stopped
     stdin_open: true # -i
@@ -8,3 +9,5 @@ services:
     ports:
       - "42420:42420/udp"
       - "42420:42420/tcp"
+    volumes:
+      - ./data:/data
