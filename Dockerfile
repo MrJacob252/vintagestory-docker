@@ -39,7 +39,7 @@ RUN chmod +x server/server.sh
 
 # Import previous data (if provided in the folder)
 RUN mkdir ./data
-RUN cp -r /data ./data
+COPY /data ./data
 
 # Modify the server.sh file
 RUN sed -i -e 's|^USERNAME=.*|USERNAME=vintagestory|' server/server.sh
