@@ -21,12 +21,8 @@ WORKDIR /home/vintagestory
 RUN wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
 RUN chmod +x ./dotnet-install.sh
 RUN ./dotnet-install.sh --channel 10.0 --install-dir /home/vintagestory/.dotnet
-# RUN export DOTNET_ROOT="/home/vintagestory/.dotnet"
-# RUN export PATH="$PATH:/home/vintagestory/.dotnet:/home/vintagestory/.dotnet/tools"
-# RUN export PATH="$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools"
 # Make the system see the .net
 ENV DOTNET_ROOT=/home/vintagestory/.dotnet
-#ENV PATH="&{PATH}:${DOTNET_ROOT}"
 USER root
 RUN ln -s /home/vintagestory/.dotnet/dotnet /usr/bin/dotnet
 USER vintagestory
@@ -60,12 +56,5 @@ USER vintagestory
 EXPOSE 42420/tcp
 EXPOSE 42420/udp
 
-# CMD ["./debug/loop_ls.sh"]
-# CMD ["./debug/runner.sh"]
-# CMD ["./server/server.sh", "start"]
-# Set entrypoint and send the start server argument
 ENTRYPOINT ["./server/entrypoint.sh"]
-# CMD ["./server/entrypoint.sh"]`
-# CMD ["start"]
-# CMD ["dotnet", "./server/VintagestoryServer.dll", "--dataPath", "./data"]
 
